@@ -16,7 +16,7 @@
   "explorer.openEditors.visible": 0,
   "files.autoSave": "afterDelay",
   "screencastMode.onlyKeyboardShortcuts": true,
-  "terminal.integrated.fontSize": 18,
+  "terminal.integrated.fontSize": 12,
   "workbench.colorTheme": "Visual Studio Dark",
   "workbench.fontAliasing": "antialiased",
   "workbench.statusBar.visible": false,
@@ -68,5 +68,6 @@
     "typeinfo": "cpp",
     "ctime": "cpp",
     "fstream": "cpp"
-  }
+  },
+  "debug.console.fontSize": 12
 }
