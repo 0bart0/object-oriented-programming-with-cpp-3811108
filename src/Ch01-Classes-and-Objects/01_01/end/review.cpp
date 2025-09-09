@@ -2,9 +2,9 @@
 
 Review::Review(unsigned int r, const std::string &t, const std::string &txt)
 {
-  rating = r;
-  title = t;
-  text = txt;
+  setRating(r);
+  setTitle(t);
+  setText(txt);
 }
 
 Review::~Review()
@@ -14,7 +14,39 @@ Review::~Review()
 
 void Review::displayDetails() const
 {
-  std::cout << "Rating " << rating << "/5\n";
-  std::cout << "Title: " << title << "\n";
-  std::cout << "Text: " << text << std::endl;
+  ++accessCount;
+   std::cout << "Rating " << rating << "/5\n"
+   << "Title: " << title << "\n"
+   << "Text: " << text << "\n" 
+  << "Read " << accessCount << " times" << std::endl;
+}
+
+void Review::setRating(unsigned int r)
+{
+  if (r < MIN_RATING || r > MAX_RATING)
+  {
+    throw std::invalid_argument("Rating must be between 1 and 5");
+  }
+  this->rating = r;
+}
+
+void Review::setTitle(const std::string &t)
+{
+  this->title = validateAndTrim(t, MAX_TITLE_LENGTH, "Title");
+}
+
+void Review::setText(const std::string &txt)
+{
+  this->text = validateAndTrim(txt, MAX_TEXT_LENGTH, "Review text");
+}
+
+std::string Review::validateAndTrim(const std::string &str,
+                                    unsigned int maxLength,
+                                    const std::string &fieldName) const
+{
+  if (str.empty())
+  {
+    throw std::invalid_argument(fieldName + " cannot be empty");
+  }
+  return str.length() > maxLength ? str.substr(0, maxLength) : str;
 }
